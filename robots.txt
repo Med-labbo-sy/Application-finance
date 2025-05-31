@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+Allow: /index.php
+Allow: /pages/
+Allow: /css/
+Allow: /js/
+Allow: /img/
+
+Disallow: /config/
+Disallow: /includes/
+Disallow: /.git/
+Disallow: /vendor/
+Disallow: /*.json$
+Disallow: /*.lock$
+Disallow: /*.md$
+Disallow: /.htaccess
+
+Sitemap: https://www.libefinance.com/sitemap.xml 

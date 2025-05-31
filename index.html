@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libé-Finance - Simulation Financière</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header class="main-header">
+        <nav class="nav-container">
+            <a href="index.html" class="brand">
+                <svg class="brand-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="logo-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#007B7B" />
+                            <stop offset="100%" style="stop-color:#005555" />
+                        </linearGradient>
+                    </defs>
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="url(#logo-gradient)" stroke-width="8"/>
+                    <path d="M30 65 L50 25 L70 65 M40 50 L60 50" stroke="url(#logo-gradient)" stroke-width="8" fill="none" stroke-linecap="round"/>
+                </svg>
+                <span class="brand-text">Libé-Finance</span>
+            </a>
+            <ul class="nav-links">
+                <a href="/opt/lampp/htdocs/mamadou/Gaza/Application/index.php" class="nav-link active"><i class="fas fa-home"></i> Accueil</a>
+                <a href="/opt/lampp/htdocs/mamadou/Gaza/Application/apropos.php" class="nav-link"><i class="fas fa-info-circle"></i> À propos</a>
+                <a href="/opt/lampp/htdocs/mamadou/Gaza/Application/contact.php" class="nav-link"><i class="fas fa-envelope"></i> Contact</a>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <!-- Page d'accueil -->
+            <section id="accueil-page" class="page-content">
+                <div class="feature-banner">
+                    <h2>welcome to our website Libé-Finance</h2>
+                </div>
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="simulation">Simulation</button>
+                    <button class="tab-btn" data-tab="comparison">Comparaison</button>
+                    <button class="tab-btn" data-tab="recommendations">Recommandations</button>
+                </div>
+
+                <div class="tab-content active" id="simulation">
+                    <div class="operation-type">
+                        <h2>Type d'opération</h2>
+                        <div class="toggle-container">
+                            <button class="toggle-btn active" data-operation="savings">Épargne</button>
+                            <button class="toggle-btn" data-operation="loan">Remboursement d'emprunt</button>
+                        </div>
+                    </div>
+
+                    <div class="annuity-type">
+                        <h2>Type d'annuité</h2>
+                        <div class="toggle-container">
+                            <button class="toggle-btn active" data-annuity="constant">Constante</button>
+                            <button class="toggle-btn" data-annuity="geometric">Géométrique</button>
+                        </div>
+                    </div>
+
+                    <!-- Formulaire pour l'épargne -->
+                    <div class="form-container" id="savings-form">
+                        <h2>Paramètres d'épargne</h2>
+                        <form id="savings-params">
+                            <div class="form-group">
+                                <label for="initial-deposit">Versement initial (DH)</label>
+                                <input type="number" id="initial-deposit" min="0" step="100" placeholder="0">
+                            </div>
+                            <div class="form-group">
+                                <label for="periodic-deposit">Versement périodique (DH)</label>
+                                <input type="number" id="periodic-deposit" min="0" step="100" required placeholder="1000">
+                            </div>
+                            <div class="form-group">
+                                <label for="interest-rate">Taux d'intérêt annuel (%)</label>
+                                <input type="number" id="interest-rate" min="0" max="20" step="0.01" required placeholder="3.5">
+                            </div>
+                            <div class="form-group">
+                                <label for="payment-frequency">Fréquence des versements</label>
+                                <select id="payment-frequency" required>
+                                    <option value="12">Mensuelle</option>
+                                    <option value="4">Trimestrielle</option>
+                                    <option value="1">Annuelle</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="savings-duration">Durée (années)</label>
+                                <input type="number" id="savings-duration" min="1" max="50" step="1" placeholder="10">
+                            </div>
+                            <div class="form-group">
+                                <label for="target-amount">OU Montant cible (DH)</label>
+                                <input type="number" id="target-amount" min="0" step="1000" placeholder="100000">
+                            </div>
+                            <div class="form-group geometric-only">
+                                <label for="growth-rate">Taux de croissance des versements (%)</label>
+                                <input type="number" id="growth-rate" min="-10" max="20" step="0.1" placeholder="2">
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" id="calculate-savings" class="btn-primary">Calculer</button>
+                                <button type="button" id="save-scenario" class="btn-secondary">Sauvegarder ce scénario</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Formulaire pour le remboursement d'emprunt -->
+                    <div class="form-container hidden" id="loan-form">
+                        <h2>Paramètres de remboursement</h2>
+                        <form id="loan-params">
+                            <div class="form-group">
+                                <label for="loan-amount">Montant total de l'emprunt (DH)</label>
+                                <input type="number" id="loan-amount" min="0" step="1000" required placeholder="500000">
+                            </div>
+                            <div class="form-group">
+                                <label for="loan-rate">Taux d'intérêt annuel (%)</label>
+                                <input type="number" id="loan-rate" min="0" max="20" step="0.01" required placeholder="4.5">
+                            </div>
+                            <div class="form-group">
+                                <label for="loan-frequency">Fréquence des remboursements</label>
+                                <select id="loan-frequency" required>
+                                    <option value="12">Mensuelle</option>
+                                    <option value="4">Trimestrielle</option>
+                                    <option value="1">Annuelle</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="loan-duration">Durée (années)</label>
+                                <input type="number" id="loan-duration" min="1" max="50" step="1" placeholder="20">
+                            </div>
+                            <div class="form-group">
+                                <label for="payment-amount">OU Montant de la mensualité (DH)</label>
+                                <input type="number" id="payment-amount" min="0" step="100" placeholder="3000">
+                            </div>
+                            <div class="form-group geometric-only">
+                                <label for="loan-growth-rate">Taux de croissance des mensualités (%)</label>
+                                <input type="number" id="loan-growth-rate" min="-10" max="20" step="0.1" placeholder="2">
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" id="calculate-loan" class="btn-primary">Calculer</button>
+                                <button type="button" id="save-loan-scenario" class="btn-secondary">Sauvegarder ce scénario</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Résultats -->
+                    <div class="results-container hidden" id="results">
+                        <h2>Résultats de la simulation</h2>
+                        <div class="results-summary">
+                            <div class="summary-card" id="summary-card-1">
+                                <h3>Montant total</h3>
+                                <p class="amount" id="total-amount">0 DH</p>
+                            </div>
+                            <div class="summary-card" id="summary-card-2">
+                                <h3>Intérêts cumulés</h3>
+                                <p class="amount" id="total-interest">0 DH</p>
+                            </div>
+                            <div class="summary-card" id="summary-card-3">
+                                <h3>Durée totale</h3>
+                                <p class="amount" id="total-duration">0 ans</p>
+                            </div>
+                        </div>
+
+                        <div class="chart-container">
+                            <canvas id="finance-chart"></canvas>
+                        </div>
+
+                        <div class="table-container">
+                            <h3>Tableau détaillé</h3>
+                            <div class="table-scroll">
+                                <table id="amortization-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Période</th>
+                                            <th>Versement</th>
+                                            <th>Intérêts</th>
+                                            <th>Capital</th>
+                                            <th>Solde</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Rempli dynamiquement par JavaScript -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="comparison">
+                    <h2>Comparaison de scénarios</h2>
+                    <div class="scenarios-container">
+                        <div class="scenario-selection">
+                            <div class="form-group">
+                                <label for="scenario1">Scénario 1</label>
+                                <select id="scenario1">
+                                    <option value="">Sélectionnez un scénario</option>
+                                    <!-- Options remplies dynamiquement -->
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="scenario2">Scénario 2</label>
+                                <select id="scenario2">
+                                    <option value="">Sélectionnez un scénario</option>
+                                    <!-- Options remplies dynamiquement -->
+                                </select>
+                            </div>
+                            <button type="button" id="compare-btn" class="btn-primary">Comparer</button>
+                        </div>
+                        <div class="comparison-results hidden">
+                            <div class="comparison-charts">
+                                <div class="chart-container">
+                                    <canvas id="comparison-chart"></canvas>
+                                </div>
+                            </div>
+                            <div class="comparison-table-container">
+                                <h3>Tableau comparatif</h3>
+                                <table id="comparison-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Critère</th>
+                                            <th>Scénario 1</th>
+                                            <th>Scénario 2</th>
+                                            <th>Différence</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Rempli dynamiquement par JavaScript -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="recommendations">
+                    <h2>Recommandations personnalisées</h2>
+                    <div class="recommendations-container">
+                        <div class="recommendation-card">
+                            <h3><i class="fas fa-lightbulb"></i> Optimisation des versements</h3>
+                            <p id="payment-recommendation">Veuillez d'abord effectuer une simulation pour obtenir des recommandations personnalisées.</p>
+                        </div>
+                        <div class="recommendation-card">
+                            <h3><i class="fas fa-chart-line"></i> Stratégie de croissance</h3>
+                            <p id="growth-recommendation">Veuillez d'abord effectuer une simulation pour obtenir des recommandations personnalisées.</p>
+                        </div>
+                        <div class="recommendation-card">
+                            <h3><i class="fas fa-clock"></i> Optimisation de la durée</h3>
+                            <p id="duration-recommendation">Veuillez d'abord effectuer une simulation pour obtenir des recommandations personnalisées.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <div class="decoration-overlay"></div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-decoration">
+                <i class="fas fa-city cityscape"></i>
+            </div>
+            <p>&copy; 2025 Libé-Finance</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/scenarios.js"></script>
+    <script src="js/calculations.js"></script>
+    <script src="js/charts.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

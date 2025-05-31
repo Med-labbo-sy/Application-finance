@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Libé-Finance</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header class="main-header">
+        <nav class="nav-container">
+            <a href="index.html" class="brand">
+                <svg class="brand-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="logo-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#8E44AD" />
+                            <stop offset="100%" style="stop-color:#E056FD" />
+                        </linearGradient>
+                    </defs>
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="url(#logo-gradient)" stroke-width="8"/>
+                    <path d="M30 65 L50 25 L70 65 M40 50 L60 50" stroke="url(#logo-gradient)" stroke-width="8" fill="none" stroke-linecap="round"/>
+                </svg>
+                <span class="brand-text">Libé-Finance</span>
+            </a>
+            <ul class="nav-links">
+                <a href="/opt/lampp/htdocs/mamadou/Gaza/Application/index.html" class="nav-link active"><i class="fas fa-home"></i> Accueil</a>
+                <a href="/opt/lampp/htdocs/mamadou/Gaza/Application/apropos.html" class="nav-link"><i class="fas fa-info-circle"></i> À propos</a>
+                <a href="/opt/lampp/htdocs/mamadou/Gaza/Application/contact.html" class="nav-link"><i class="fas fa-envelope"></i> Contact</a>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="contact-page">
+                <h2>Contactez-nous</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3>Nos Coordonnées</h3>
+                        <div class="contact-details">
+                            <p><i class="fas fa-envelope"></i> Email : mamadoulabbos88@gmail.com</p>
+                            <p><i class="fas fa-phone"></i> Téléphone : +212 772994717</p>
+                            <p><i class="fas fa-clock"></i> Horaires : Lun-Ven, 9h-18h</p>
+                        </div>
+                    </div>
+                    <form id="contact-form" class="contact-form" method="POST" action="index.php?page=contact">
+                        <div class="form-group">
+                            <label for="name">Nom complet</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Sujet</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-paper-plane"></i> Envoyer
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-decoration">
+                <i class="fas fa-city cityscape"></i>
+            </div>
+            <p>&copy; 2025 Libé-Finance - Votre partenaire en simulation financière</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
