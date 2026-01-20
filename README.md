@@ -9,7 +9,7 @@ Libé-Finance est une application web permettant aux utilisateurs de simuler des
 - Visualisation graphique de l'évolution du capital ou du remboursement
 - Tableaux d'amortissement ou de capitalisation détaillés
 - Comparaison de différents scénarios financiers
-- Recommandations personnalisées pour optimiser sa stratégie financière
+- Recommandations personnalisées pour optimiser sa stratégie financière.
 
 ## Structure du projet
 ```
